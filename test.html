@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 引入 ECharts 文件 -->
+    <script src="echarts-3.1.3.min.js"></script>
+    <script id="echarts-js" type="text/javascript" src="dark.js"></script>
+	<script id="echarts-js" type="text/javascript" src="./map/js/china.js"></script>
+	<script id="echarts-js" type="text/javascript" src="./map/js/world.js"></script>
+	<style type="text/css">
+		body {
+			background-color:rgb(9,32,39);
+		}
+		.myrect {
+			border:3px solid rgb(29,158,176);border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+
+<div style="margin-left:40px;margin-right:40px;">
+	<div style="color:white;">
+		<h1>演示页面，未美化。</h1>
+	</div>
+
+	<div>
+		<table width="100%" height="300" cellspacing="10">
+			<tr>
+				<td width="25%">
+					<div id="gg1" class="myrect" style="width:100%;height:100%;"></div>
+				</td>
+				<td width="25%">
+					<div id="gg2" class="myrect" style="width:100%;height:100%;"></div>
+				</td>
+				<td width="25%">
+					<div id="gg3" class="myrect" style="width:100%;height:100%;"></div>
+				</td>
+				<td width="25%">
+					<div id="gg4" class="myrect" style="width:100%;height:100%;"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+     <div id="main" class="myrect" style="width: 100%;height:600px;"></div>
+
+	<div class="myrect" style="margin:10px;color:white; ">
+		<table border="1" width="100%" style="border-color:white;">
+			<caption>公司排名列表</caption>	
+			<thead>
+				<tr>
+					<th>排名</th>
+					<th>分公司名称</th>
+					<th>实际销售</th>
+					<th>实际完成率</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<br/>	
+	<br/>	
+
+	<div class="myrect">
+		<table width="100%" height="400">
+			<tr>
+				<td width="40%">	
+					<div id="pie1" style="width:100%;height:100%;"></div>
+				</td>
+				<td width="60%">	
+					<div id="line1" style="width:100%;height:100%;"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<br/>	
+	<br/>	
+
+	<div class="myrect">
+		<table width="100%" height="400">
+			<tr>
+				<td width="40%">	
+					<div id="bar1" style="width:100%;height:100%;"></div>
+				</td>
+				<td width="60%">	
+					<div id="line2" style="width:100%;height:100%;"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+ </div>
+
+ <script type="text/javascript">
+
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main'), 'dark');
+
+function randomData() {
+    return Math.round(Math.random()*1000);
+}
+
+var option = {
+    title: {
+        text: 'iphone销量',
+        subtext: '纯属虚构',
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        data:['iphone3','iphone4','iphone5']
+    },
+    visualMap: {
+        min: 0,
+        max: 2500,
+        left: 'left',
+        top: 'bottom',
+        text: ['高','低'],           // 文本，默认为数值文本
+        calculable: true
+    },
+    toolbox: {
+        show: true,
+        orient: 'vertical',
+        left: 'right',
+        top: 'center',
+        feature: {
+            dataView: {readOnly: false},
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    series: [
+        {
+            name: 'iphone3',
+            type: 'map',
+            mapType: 'china',
+            roam: false,
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:[
+                {name: '北京',value: randomData() },
+                {name: '天津',value: randomData() },
+                {name: '上海',value: randomData() },
+                {name: '重庆',value: randomData() },
+                {name: '河北',value: randomData() },
+                {name: '河南',value: randomData() },
+                {name: '云南',value: randomData() },
+                {name: '辽宁',value: randomData() },
+                {name: '黑龙江',value: randomData() },
+                {name: '湖南',value: randomData() },
+                {name: '安徽',value: randomData() },
+                {name: '山东',value: randomData() },
+                {name: '新疆',value: randomData() },
+                {name: '江苏',value: randomData() },
+                {name: '浙江',value: randomData() },
+                {name: '江西',value: randomData() },
+                {name: '湖北',value: randomData() },
+                {name: '广西',value: randomData() },
+                {name: '甘肃',value: randomData() },
+                {name: '山西',value: randomData() },
+                {name: '内蒙古',value: randomData() },
+                {name: '陕西',value: randomData() },
+                {name: '吉林',value: randomData() },
+                {name: '福建',value: randomData() },
+                {name: '贵州',value: randomData() },
+                {name: '广东',value: randomData() },
+                {name: '青海',value: randomData() },
+                {name: '西藏',value: randomData() },
+                {name: '四川',value: randomData() },
+                {name: '宁夏',value: randomData() },
+                {name: '海南',value: randomData() },
+                {name: '台湾',value: randomData() },
+                {name: '香港',value: randomData() },
+                {name: '澳门',value: randomData() }
+            ]
+        },
+        {
+            name: 'iphone4',
+            type: 'map',
+            mapType: 'china',
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:[
+                {name: '北京',value: randomData() },
+                {name: '天津',value: randomData() },
+                {name: '上海',value: randomData() },
+                {name: '重庆',value: randomData() },
+                {name: '河北',value: randomData() },
+                {name: '安徽',value: randomData() },
+                {name: '新疆',value: randomData() },
+                {name: '浙江',value: randomData() },
+                {name: '江西',value: randomData() },
+                {name: '山西',value: randomData() },
+                {name: '内蒙古',value: randomData() },
+                {name: '吉林',value: randomData() },
+                {name: '福建',value: randomData() },
+                {name: '广东',value: randomData() },
+                {name: '西藏',value: randomData() },
+                {name: '四川',value: randomData() },
+                {name: '宁夏',value: randomData() },
+                {name: '香港',value: randomData() },
+                {name: '澳门',value: randomData() }
+            ]
+        },
+        {
+            name: 'iphone5',
+            type: 'map',
+            mapType: 'china',
+            label: {
+                normal: {
+                    show: true
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            data:[
+                {name: '北京',value: randomData() },
+                {name: '天津',value: randomData() },
+                {name: '上海',value: randomData() },
+                {name: '广东',value: randomData() },
+                {name: '台湾',value: randomData() },
+                {name: '香港',value: randomData() },
+                {name: '澳门',value: randomData() }
+            ]
+        }
+    ]
+};
+// 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+
+var option_gg1 = {
+    tooltip : {
+        formatter: "{a} <br/>{b} : {c}%"
+    },
+    toolbox: {
+        feature: {
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    series: [
+        {
+            name: '业务指标',
+            type: 'gauge',
+            detail: {formatter:'{value}%'},
+            data: [{value: 50, name: '完成率'}]
+        }
+    ]
+};
+
+
+var tm1;
+clearInterval(tm1);
+tm1 = setInterval(function () {
+    option_gg1.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+    chart_gg1.setOption(option_gg1, true);
+    chart_gg2.setOption(option_gg1, true);
+    chart_gg3.setOption(option_gg1, true);
+    chart_gg4.setOption(option_gg1, true);
+},2000);
+
+var chart_gg1 = echarts.init(document.getElementById('gg1'), 'dark');
+chart_gg1.setOption(option_gg1);
+var chart_gg2 = echarts.init(document.getElementById('gg2'), 'dark');
+chart_gg2.setOption(option_gg1);
+var chart_gg3 = echarts.init(document.getElementById('gg3'), 'dark');
+chart_gg3.setOption(option_gg1);
+var chart_gg4 = echarts.init(document.getElementById('gg4'), 'dark');
+chart_gg4.setOption(option_gg1);
+
+
+var option_pie1 = {
+    backgroundColor: '#2c343c',
+
+    title: {
+        text: 'Customized Pie',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#ccc'
+        }
+    },
+
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+
+    visualMap: {
+        show: false,
+        min: 80,
+        max: 600,
+        inRange: {
+            colorLightness: [0, 1]
+        }
+    },
+    series : [
+        {
+            name:'访问来源',
+            type:'pie',
+            radius : '55%',
+            center: ['50%', '50%'],
+            data:[
+                {value:335, name:'直接访问'},
+                {value:310, name:'邮件营销'},
+                {value:274, name:'联盟广告'},
+                {value:235, name:'视频广告'},
+                {value:400, name:'搜索引擎'}
+            ].sort(function (a, b) { return a.value - b.value}),
+            roseType: 'angle',
+            label: {
+                normal: {
+                    textStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    lineStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    },
+                    smooth: 0.2,
+                    length: 10,
+                    length2: 20
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: '#c23531',
+                    shadowBlur: 200,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+var option_bar1 = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    legend: {
+        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎','百度','谷歌','必应','其他']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['周一','周二','周三','周四','周五','周六','周日']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'直接访问',
+            type:'bar',
+            data:[320, 332, 301, 334, 390, 330, 320]
+        },
+        {
+            name:'邮件营销',
+            type:'bar',
+            stack: '广告',
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'联盟广告',
+            type:'bar',
+            stack: '广告',
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name:'视频广告',
+            type:'bar',
+            stack: '广告',
+            data:[150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+            name:'搜索引擎',
+            type:'bar',
+            data:[862, 1018, 964, 1026, 1679, 1600, 1570],
+            markLine : {
+                lineStyle: {
+                    normal: {
+                        type: 'dashed'
+                    }
+                },
+                data : [
+                    [{type : 'min'}, {type : 'max'}]
+                ]
+            }
+        },
+        {
+            name:'百度',
+            type:'bar',
+            barWidth : 5,
+            stack: '搜索引擎',
+            data:[620, 732, 701, 734, 1090, 1130, 1120]
+        },
+        {
+            name:'谷歌',
+            type:'bar',
+            stack: '搜索引擎',
+            data:[120, 132, 101, 134, 290, 230, 220]
+        },
+        {
+            name:'必应',
+            type:'bar',
+            stack: '搜索引擎',
+            data:[60, 72, 71, 74, 190, 130, 110]
+        },
+        {
+            name:'其他',
+            type:'bar',
+            stack: '搜索引擎',
+            data:[62, 82, 91, 84, 109, 110, 120]
+        }
+    ]
+};
+
+function randomData1() {
+    now = new Date(+now + oneDay);
+    value = value + Math.random() * 21 - 10;
+    return {
+        name: now.toString(),
+        value: [
+            [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-'),
+            Math.round(value)
+        ]
+    }
+}
+
+var data = [];
+var now = +new Date(1997, 9, 3);
+var oneDay = 24 * 3600 * 1000;
+var value = Math.random() * 1000;
+for (var i = 0; i < 1000; i++) {
+    data.push(randomData1());
+}
+
+var option_line1 = {
+    title: {
+        text: '动态数据 + 时间坐标轴'
+    },
+    tooltip: {
+        trigger: 'axis',
+        formatter: function (params) {
+            params = params[0];
+            var date = new Date(params.name);
+            return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
+        },
+        axisPointer: {
+            animation: false
+        }
+    },
+    xAxis: {
+        type: 'time',
+        splitLine: {
+            show: false
+        }
+    },
+    yAxis: {
+        type: 'value',
+        boundaryGap: [0, '100%'],
+        splitLine: {
+            show: false
+        }
+    },
+    series: [{
+        name: '模拟数据',
+        type: 'line',
+        showSymbol: false,
+        hoverAnimation: false,
+        data: data
+    }]
+};
+
+ setInterval(function () {
+
+    for (var i = 0; i < 5; i++) {
+        data.shift();
+        data.push(randomData1());
+    }
+
+    chart_line1.setOption({
+        series: [{
+            data: data
+        }]
+    });
+}, 1000);
+
+var chart_pie1 = echarts.init(document.getElementById('pie1'), 'dark');
+chart_pie1.setOption(option_pie1);
+
+var chart_line1 = echarts.init(document.getElementById('line1'), 'dark');
+chart_line1.setOption(option_line1);
+
+var chart_bar1 = echarts.init(document.getElementById('bar1'), 'dark');
+chart_bar1.setOption(option_bar1);
+
+var chart_line2 = echarts.init(document.getElementById('line2'), 'dark');
+chart_line2.setOption(option_line1);
+
+</script>
+</body>
+</html>
